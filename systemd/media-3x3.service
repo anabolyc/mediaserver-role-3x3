@@ -1,0 +1,18 @@
+[Unit]
+Description=dockerized local media tv stream
+Requires=docker.service mnt-azure_storage_decoded.mount                                                                                                     $
+After=docker.service mnt-azure_storage_decoded.mount
+
+[Service]
+ExecStartPre=-/usr/bin/docker rm -f minidlna-instance
+ExecStartPre=-/usr/bin/docker pull andreymalyshenko/mediaserver-role-3x3:armhf
+ExecStart=/usr/bin/docker run --name media-3x3-instance -v /mnt/azure_storage_decoded/mult:/media:ro -p 8099:5000 andreymalyshenko/mediaserver-role-3x3:armhf
+ExecStartPost=/bin/sh -c 'while ! docker ps | grep media-3x3-instance ; do sleep 1; done'
+ExecStop=/usr/bin/docker rm -f media-3x3-instance
+TimeoutSec=0
+RemainAfterExit=no
+Restart=Always
+
+[Install]
+WantedBy=multi-user.target
+

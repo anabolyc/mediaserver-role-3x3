@@ -1,0 +1,6 @@
+#!/bin/bash
+
+media_dir=$1
+
+find $media_dir -type f | sed -e 's/^/setup channel1 input "/' -e 's/$/"/' | shuf
+
