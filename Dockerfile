@@ -31,6 +31,7 @@ RUN chown vlc-pal:vlc-pal /xupnpd -R
 
 ENV FRONTEND_NAME TV3x3
 ENV FRONTEND_PORT 4044
+ENV VLC_IP localhost
 ENV BACKEND_GUID 68e01182-8f81-439c-b36c-3482b6a6eac7
 
 # access stream and upnp control panel

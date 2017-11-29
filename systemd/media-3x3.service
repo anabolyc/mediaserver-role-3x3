@@ -6,7 +6,7 @@ After=docker.service mnt-azure_storage_decoded.mount
 [Service]
 ExecStartPre=-/usr/bin/docker rm -f media-3x3-instance
 ExecStartPre=-/usr/bin/docker pull andreymalyshenko/mediaserver-role-3x3:armhf
-ExecStart=/usr/bin/docker run --name media-3x3-instance --net=host -v /mnt/azure_storage_decoded/mult:/media:ro --env FRONTEND_NAME=3x3  andreymalyshenko/mediaserver-role-3x3:armhf
+ExecStart=/usr/bin/docker run --name media-3x3-instance --net=host -v /mnt/azure_storage_decoded/mult:/media:ro --env FRONTEND_NAME=3x3 --env VLC_IP=192.168.1.42 andreymalyshenko/mediaserver-role-3x3:armhf
 ExecStartPost=/bin/sh -c 'while ! docker ps | grep media-3x3-instance ; do sleep 1; done'
 ExecStop=/usr/bin/docker rm -f media-3x3-instance
 TimeoutSec=0

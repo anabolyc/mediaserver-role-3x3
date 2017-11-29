@@ -18,7 +18,7 @@ fi
 echo "Starting vls stream..."
 vlc -Ihttp --log-verbose=1 --vlm-conf /vlc/vlm.conf --random --loop --network-caching 1000 --sout-mux-caching 2000 --clock-jitter 0 &
 
-echo "#EXTINF:-1 group-title="TV" tvg-name="3x3" tvg-id="" tvg-logo="",3x3\nhttp://localhost:5000/live" > /xupnpd/src/playlists/list.m3u 
+echo "#EXTINF:-1 group-title="TV" tvg-name="3x3" tvg-id="" tvg-logo="",3x3\nhttp://${VLC_IP}:5000/live" > /xupnpd/src/playlists/list.m3u 
 
 echo "Starting xupnp server"
 /xupnpd/src/xupnpd
